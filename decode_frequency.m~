@@ -1,0 +1,16 @@
+function x = decode_frequency(freq)
+
+frequency_band = [3600 3800 4000 4200];
+frequency_around = 
+
+switch frequency_around
+   case frequency_band(1)
+      x = 0;
+   case frequency_band(2)
+      x = 1;
+   case frequency_band(3)
+      x = 2;
+   case frequency_band(4)
+      x = 3;
+   otherwise
+end
