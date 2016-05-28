@@ -1,14 +1,15 @@
 clc
 clear
 
-phrase = 'B';
-binary = dec2bin(double(phrase), 8)
+% Sentence to binary
+sentence = 'B';
+binary = dec2bin(double(sentence), 8)
 
+% Number of samples by unit of time
 fs = 30000; % Hz1
-t = 0:1/fs:1; % seconds
+t = 0:1/fs:1-1/fs; % seconds
 
-size(sin(2.*pi.*500.*t))
-
+% Initalizing frequencies and creating four sinusoids for each character
 character_count = size(binary(:,1),1);
 frequencies = zeros(size(t,2), character_count*4);
 
@@ -20,9 +21,13 @@ for n = 1:size(binary,1)
 end
 
 reshaped_bin = reshape(binary', 1, numel(binary));
-char(bin2dec(reshape(reshaped_bin, 8, []).')).';
+%char(bin2dec(reshape(reshaped_bin, 8, []).')).';
 
 frequencies = reshape(frequencies,1,[]);
 size(frequencies)
 
-sound(frequencies, fs, 16)
+frequencies_synced = [sin(2.*pi.*500.*t) frequencies];
+
+%sound(frequencies, fs, 16);
+%sound(sin(2.*pi.*3500.*t) + sin(2.*pi.*1000.*t) + sin(2.*pi.*2000.*t), fs, 16);
+sound([sin(2.*pi.*3000.*t) zeros(size(t)) frequencies], fs, 16);

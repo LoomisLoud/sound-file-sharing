@@ -1,6 +1,7 @@
 function x = choose_frequency(num)
 
-frequency_band = [7000 7500 8000 8500];
+%frequency_band = [3600 3625 3650 3675];
+frequency_band = [3600 3800 4000 4200];
 switch num
    case 0
       x = frequency_band(1);
