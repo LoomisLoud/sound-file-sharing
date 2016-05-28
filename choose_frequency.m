@@ -1,7 +1,6 @@
 function x = choose_frequency(num)
 
-%frequency_band = [3600 3625 3650 3675];
-frequency_band = [3600 3800 4000 4200];
+frequency_band = [3600 3700 3800 3900];
 switch num
    case 0
       x = frequency_band(1);
@@ -12,5 +11,5 @@ switch num
    case 3
       x = frequency_band(4);
    otherwise
-      'nique'
+      'Not found'
 end
