@@ -13,7 +13,6 @@ for n = 1:4:size(frequencies(:))
     
     binaryLetter = strcat(tuple1,tuple2,tuple3,tuple4);
     
-    
     letter = char(bin2dec(binaryLetter));
     word = strcat(word,{letter});
 end
