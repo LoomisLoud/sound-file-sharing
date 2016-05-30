@@ -1,6 +1,8 @@
 clc
 clear
 
+freq = [4000 7000 10000 13000];
+
 % Sentence to binary
 sentence = 'Bonjour sale fils de pute';
 binary = dec2bin(double(sentence), 8);
@@ -17,14 +19,14 @@ character_count = size(binary(:,1),1);
 frequencies = zeros(size(t,2), character_count*4);
 
 for n = 1:size(binary,1)
-   frequencies(:, n*4 - 3) = sin(2.*pi.*choose_frequency(bin2dec(binary(n, 1:2))).*t);
-   choose_frequency(bin2dec(binary(n, 1:2)))
-   frequencies(:, n*4 - 2) = sin(2.*pi.*choose_frequency(bin2dec(binary(n, 3:4))).*t);
-   choose_frequency(bin2dec(binary(n, 3:4)))
-   frequencies(:, n*4 - 1) = sin(2.*pi.*choose_frequency(bin2dec(binary(n, 5:6))).*t);
-   choose_frequency(bin2dec(binary(n, 5:6)))
-   frequencies(:, n*4) = sin(2.*pi.*choose_frequency(bin2dec(binary(n, 7:8))).*t);
-   choose_frequency(bin2dec(binary(n, 7:8)))
+   frequencies(:, n*4 - 3) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(n, 1:2))).*t);
+   choose_frequency(freq, bin2dec(binary(n, 1:2)))
+   frequencies(:, n*4 - 2) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(n, 3:4))).*t);
+   choose_frequency(freq, bin2dec(binary(n, 3:4)))
+   frequencies(:, n*4 - 1) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(n, 5:6))).*t);
+   choose_frequency(freq, bin2dec(binary(n, 5:6)))
+   frequencies(:, n*4) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(n, 7:8))).*t);
+   choose_frequency(freq, bin2dec(binary(n, 7:8)))
 end
 
 reshaped_bin = reshape(binary', 1, numel(binary));

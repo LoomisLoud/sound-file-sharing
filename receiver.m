@@ -1,5 +1,5 @@
-% clc
-% clear
+clc
+clear
 
 fs = 44100;
 t=0:1/fs:1-1/fs;
@@ -15,11 +15,11 @@ timeSignal = round(time_bit*fs);
 
 result = zeros(1,numberOfTuples);
 
-% recObj = audiorecorder(fs,16,1);
-% disp('Start speaking.')
-% recordblocking(recObj, timeListen);
-% disp('End of Recording.');
-% x = getaudiodata(recObj);
+recObj = audiorecorder(fs,16,1);
+disp('Start speaking.')
+recordblocking(recObj, timeListen);
+disp('End of Recording.');
+x = getaudiodata(recObj);
 
 c = conv(x(1:3*fs),signalDep);
 [maxConv, indexConv] = max(c);
@@ -60,5 +60,5 @@ for n = timeStart:timeSignal:timeStart + (numberOfTuples - 1)*timeSignal
     end       
     result(count) = b;
 end
-n = 'hello'
-convert2Ascii(result)
+
+convert2Ascii(freq, result)
