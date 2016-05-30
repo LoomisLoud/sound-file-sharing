@@ -23,10 +23,10 @@ frequencies_sentence_size = zeros(size(t_sync,2), 4);
 frequencies = zeros(size(t,2), character_count*4);
 
 % Send the size of the array
-frequencies_sentence_size(:, 1) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(1, 1:2))).*t_sync);
-frequencies_sentence_size(:, 2) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(1, 3:4))).*t_sync);
-frequencies_sentence_size(:, 3) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(1, 5:6))).*t_sync);
-frequencies_sentence_size(:, 4) = sin(2.*pi.*choose_frequency(freq, bin2dec(binary(1, 7:8))).*t_sync);
+frequencies_sentence_size(:, 1) = sin(2.*pi.*choose_frequency(freq, bin2dec(size_sentence_bin(1, 1:2))).*t_sync);
+frequencies_sentence_size(:, 2) = sin(2.*pi.*choose_frequency(freq, bin2dec(size_sentence_bin(1, 3:4))).*t_sync);
+frequencies_sentence_size(:, 3) = sin(2.*pi.*choose_frequency(freq, bin2dec(size_sentence_bin(1, 5:6))).*t_sync);
+frequencies_sentence_size(:, 4) = sin(2.*pi.*choose_frequency(freq, bin2dec(size_sentence_bin(1, 7:8))).*t_sync);
 
 frequencies_sentence_size = reshape(frequencies_sentence_size,1,[]);
 

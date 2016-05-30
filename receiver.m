@@ -8,20 +8,17 @@ t=0:1/fs:1-1/fs;
 freq = [5000 6000 7000 8000];
 sync_freq = 3000;
 range = 10;
-numberOfTuples = 640;
 time_bit = 0.1;
-timeListen = numberOfTuples*time_bit + 5;
 
 signalDep = sin(2*pi*sync_freq*t);
-timeSignal = round(time_bit*fs);
-
-result = zeros(1,numberOfTuples);
-size_result = zero(1,4);
+size_result = zeros(1,4);
 
 % Starting to listen and record the data
 % recObj = audiorecorder(fs,16,1);
 % disp('Start speaking.')
-% recordblocking(recObj, timeListen);
+% record(recObj)
+% pause;
+% stop(recObj)
 % disp('End of Recording.');
 % signal = getaudiodata(recObj);
 
@@ -31,13 +28,13 @@ c = conv(signal(1:3*fs),signalDep);
 [maxConv, indexConv] = max(c);
 timeStart = indexConv+fs;
 
-threshold_study = zeros(1,numberOfTuples);
-count = 0;
+ count = 0;
 countSize = 0;
 
-for n = timeStart:timeSignal*2:3*timeSignal*2
+% Analyzes the size of the message
+for n = timeStart:fs:timeStart + 3*fs
     countSize = countSize + 1;
-    tuple = signal(n:n+timeSignal*2-1);
+    tuple = signal(n:n+fs-1);
     m = length(tuple);
     
     % NFFT
@@ -77,7 +74,12 @@ end
 
 size_message = convert2size(freq, size_result);
 
-for n = timeStart:timeSignal:timeStart + (numberOfTuples - 1)*timeSignal
+numberOfTuples = size_message*4;
+timeSignal = round(time_bit*fs);
+result = zeros(1,numberOfTuples);
+
+timeStartMessage = timeStart + 5*fs;
+for n = timeStartMessage:timeSignal:timeStartMessage + (numberOfTuples - 1)*timeSignal
     count = count + 1;
     tuple = signal(n:n+timeSignal-1);
     m = length(tuple);
@@ -114,9 +116,8 @@ for n = timeStart:timeSignal:timeStart + (numberOfTuples - 1)*timeSignal
             disp('Not found')
     end
     
-    threshold_study(count) = max([maxfreq1 maxfreq2 maxfreq3 maxfreq4]);
     result(count) = chosen_frequency;
 end
-
+ 
 hello = convert2Ascii(freq, result)
 celldisp(hello)
