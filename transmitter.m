@@ -3,11 +3,14 @@ clear
 
 % Sentence to binary
 sentence = 'B';
-binary = dec2bin(double(sentence), 8)
+binary = dec2bin(double(sentence), 8);
+time_bit = 0.2;
+time_sync = 1;
 
 % Number of samples by unit of time
-fs = 8192; % Hz1
-t = 0:1/fs:1-1/fs; % seconds
+fs = 44100;
+t = 0:1/fs:time_bit-1/fs;
+t_sync = 0:1/fs:time_sync-1/fs;
 
 % Initalizing frequencies and creating four sinusoids for each character
 character_count = size(binary(:,1),1);
@@ -24,13 +27,9 @@ for n = 1:size(binary,1)
    choose_frequency(bin2dec(binary(n, 7:8)))
 end
 
-size(binary,1)
 reshaped_bin = reshape(binary', 1, numel(binary));
 %char(bin2dec(reshape(reshaped_bin, 8, []).')).';
 
 frequencies = reshape(frequencies,1,[]);
-size(frequencies)
 
-%sound(frequencies, fs, 16);
-%sound(sin(2.*pi.*3500.*t) + sin(2.*pi.*1000.*t) + sin(2.*pi.*2000.*t), fs, 16);
-sound([sin(2.*pi.*3000.*t) zeros(size(t)) frequencies], fs, 16);
+sound([sin(2.*pi.*3000.*t_sync) zeros(size(t_sync)) frequencies], fs, 16);
