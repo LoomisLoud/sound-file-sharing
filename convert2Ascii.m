@@ -16,7 +16,7 @@ for n = 1:4:size(frequencies(:))
     
     
     letter = char(bin2dec(binaryLetter));
-    word = strcat({word},{letter});
+    word = strcat(word,{letter});
 end
 
 x = word;
