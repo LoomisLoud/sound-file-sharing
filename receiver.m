@@ -4,10 +4,10 @@ clear
 fs = 44100;
 t=0:1/fs:1-1/fs;
 
-freq = [4000 7000 10000 13000];
+freq = [6000 6200 6400 6600];
 range = 10;
-numberOfTuples = 100;
-time_bit = 0.2;
+numberOfTuples = 640;
+time_bit = 0.05;
 timeListen = numberOfTuples*time_bit + 5;
 
 signalDep = sin(2*pi*3000*t);
@@ -61,4 +61,5 @@ for n = timeStart:timeSignal:timeStart + (numberOfTuples - 1)*timeSignal
     result(count) = b;
 end
 
-convert2Ascii(freq, result)
+hello = convert2Ascii(freq, result)
+celldisp(hello)
