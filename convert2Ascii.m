@@ -6,7 +6,6 @@ end
 word ='';
 
 for n = 1:4:size(frequencies(:))
-    n
     tuple1 = decode_frequency(band, frequencies(n));
     tuple2 = decode_frequency(band, frequencies(n+1));
     tuple3 = decode_frequency(band, frequencies(n+2));
@@ -16,7 +15,7 @@ for n = 1:4:size(frequencies(:))
     
     
     letter = char(bin2dec(binaryLetter));
-    word = strcat({word},{letter});
+    word = strcat(word,{letter});
 end
 
 x = word;
