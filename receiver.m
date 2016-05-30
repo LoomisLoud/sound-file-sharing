@@ -2,7 +2,7 @@ clc
 clear
 
 fs = 44100;
-timeListen = 4;
+timeListen = 10;
 
 recObj = audiorecorder(fs,16,1);
 disp('Start speaking.')
@@ -14,12 +14,12 @@ t=0:1/fs:1-1/fs;
 signalDep = sin(2*pi*3000*t);
 c = conv(x,signalDep);
 [maxConv, indexConv] = max(c);
-a = 0.2;
+a = 0.5;
 timeSignal = round(a*fs);
 timeStart = indexConv+fs;
-numberOfTuples = 4;
-freq = [4000 5000 6000 7000];
-range = 10;
+numberOfTuples = 12;
+freq = [4000 7000 10000 13000];
+range = 200;
 result = zeros(1,numberOfTuples);
 count = 0;
 
@@ -54,7 +54,9 @@ for n = timeStart:timeSignal:timeStart + (numberOfTuples - 1)*timeSignal
             b = freq(4);
         otherwise
             'Not found'
-    end       
+    end 
+%     plot(f,Z)
+%     pause
     result(count) = b;
 end
 
