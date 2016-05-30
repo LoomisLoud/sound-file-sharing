@@ -1,22 +1,22 @@
-% clc
-% clear
+clc
+clear
 
 fs = 44100; %Hz
 t=0:1/fs:1-1/fs;
-timeListen = 8;
+timeListen = 4;
 
-% recObj = audiorecorder(fs,16,1);
-% disp('Start speaking.')
-% recordblocking(recObj, timeListen);
-% disp('End of Recording.');
-% x = getaudiodata(recObj);
+recObj = audiorecorder(fs,16,1);
+disp('Start speaking.')
+recordblocking(recObj, timeListen);
+disp('End of Recording.');
+x = getaudiodata(recObj);
 
 %plot(x)
 
 signalDep = sin(2*pi*3000*t);
 c = conv(x,signalDep);
 [maxConv, indexConv] = max(c);
-a = 1;
+a = 0.2;
 timeSignal = round(a*fs);
 timeStart = indexConv+fs;
 
@@ -29,27 +29,31 @@ timeStart = indexConv+fs;
 % 
 % plot(fX,ZX)
 freq = [4000 5000 6000 7000];
-range = 100;
+range = 10;
 %plot(x)
 for n = timeStart:timeSignal:timeStart + 3*timeSignal
     
     tuple = x(n:n+timeSignal-1);
     m = length(tuple);
+    
+    
     NFFT = 2^nextpow2(m);
     y = fft(tuple,NFFT)/fs;    
     Z = 2*abs(y(1:NFFT/2+1));
     f = fs/2*linspace(0,1,NFFT/2+1);
-
-    I1 = Z(freq(1)-range:freq(1)+range);   
-    I2 = Z(freq(2)-range:freq(2)+range)
-    I3 = Z(freq(3)-range:freq(3)+range);
-    I4 = Z(freq(4)-range:freq(4)+range);
     
+    
+    I1 = Z(round(2*a*freq(1)*size(Z)/m)-range:round(2*a*freq(1)*size(Z)/m)+range);   
+    I2 = Z(round(2*a*freq(2)*size(Z)/m)-range:round(2*a*freq(2)*size(Z)/m)+range);
+    I3 = Z(round(2*a*freq(3)*size(Z)/m)-range:round(2*a*freq(3)*size(Z)/m)+range);
+    I4 = Z(round(2*a*freq(4)*size(Z)/m)-range:round(2*a*freq(4)*size(Z)/m)+range);
     
     [maxI1, indexI1] = max(I1);
-    [maxI2, indexI2] = max(I2)
+    [maxI2, indexI2] = max(I2);
     [maxI3, indexI3] = max(I3);
     [maxI4, indexI4] = max(I4);
+    
+    %maximum = [maxI1 maxI2 maxI3 maxI4];
     
     switch max([maxI1 maxI2 maxI3 maxI4])
         case maxI1
@@ -64,6 +68,6 @@ for n = timeStart:timeSignal:timeStart + 3*timeSignal
             'Not found'
     end       
     b
-    %plot(f,Z)
-    pause
+
+   % plot(f,Z)
 end
