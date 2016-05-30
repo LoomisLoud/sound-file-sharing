@@ -44,10 +44,10 @@ for n = timeStart:fs:timeStart + 3*fs
     f = fs/2*linspace(0,1,NFFT/2+1);
     
     % Taking a small range around the 4 chosen frequencies
-    frequency_interval_1 = Z(round(2*time_bit*freq(1)*size(Z)/m)-range:round(2*time_bit*freq(1)*size(Z)/m)+range);
-    frequency_interval_2 = Z(round(2*time_bit*freq(2)*size(Z)/m)-range:round(2*time_bit*freq(2)*size(Z)/m)+range);
-    frequency_interval_3 = Z(round(2*time_bit*freq(3)*size(Z)/m)-range:round(2*time_bit*freq(3)*size(Z)/m)+range);
-    frequency_interval_4 = Z(round(2*time_bit*freq(4)*size(Z)/m)-range:round(2*time_bit*freq(4)*size(Z)/m)+range);
+    frequency_interval_1 = Z(round(2*freq(1)*size(Z)/m)-range:round(2*freq(1)*size(Z)/m)+range);
+    frequency_interval_2 = Z(round(2*freq(2)*size(Z)/m)-range:round(2*freq(2)*size(Z)/m)+range);
+    frequency_interval_3 = Z(round(2*freq(3)*size(Z)/m)-range:round(2*freq(3)*size(Z)/m)+range);
+    frequency_interval_4 = Z(round(2*freq(4)*size(Z)/m)-range:round(2*freq(4)*size(Z)/m)+range);
 
     % Pick the highest frequency for each interval and then choose one of
     % the four
@@ -119,5 +119,4 @@ for n = timeStartMessage:timeSignal:timeStartMessage + (numberOfTuples - 1)*time
     result(count) = chosen_frequency;
 end
  
-hello = convert2Ascii(freq, result)
-celldisp(hello)
+celldisp(convert2Ascii(freq, result));
