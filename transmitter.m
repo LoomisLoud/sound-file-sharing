@@ -2,9 +2,9 @@ clc
 clear
 
 % Sentence to binary
-sentence = 'Bon';
+sentence = 'Bonjour sale fils de pute';
 binary = dec2bin(double(sentence), 8);
-time_bit = 0.5;
+time_bit = 0.2;
 time_sync = 1;
 
 % Number of samples by unit of time
