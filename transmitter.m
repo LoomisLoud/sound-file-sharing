@@ -1,7 +1,7 @@
 clc
 clear
 
-freq = [6000 6200 6400 6600];
+freq = [5000 6000 7000 8000];
 
 % Sentence to binary
 sentence = 'Bonjour sale fils de pute';
