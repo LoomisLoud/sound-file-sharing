@@ -4,7 +4,7 @@ clear
 fs = 44100;
 t=0:1/fs:1-1/fs;
 
-freq = [6000 6200 6400 6600];
+freq = [5000 6000 7000 8000];
 range = 10;
 numberOfTuples = 640;
 time_bit = 0.05;
