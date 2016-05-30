@@ -1,6 +1,6 @@
 function x = decode_frequency(freq)
 
-frequency_band = [4000 5000 6000 7000];
+frequency_band = [4000 7000 10000 13000];
 
 switch freq
    case frequency_band(1)
