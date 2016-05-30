@@ -1,12 +1,12 @@
 clc
 clear
 
-freq = [4000 7000 10000 13000];
+freq = [6000 6200 6400 6600];
 
 % Sentence to binary
-sentence = 'Bonjour sale fils de pute';
+sentence = 'Bonjour je teste le nombre de caracteres :D Jespere que tout va marcher. Et suce quand meme mes boules !!! Il manque encore quelques caratere ! Bite, chatte !!!';
 binary = dec2bin(double(sentence), 8);
-time_bit = 0.2;
+time_bit = 0.05;
 time_sync = 1;
 
 % Number of samples by unit of time
