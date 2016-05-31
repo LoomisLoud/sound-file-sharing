@@ -1,7 +1,7 @@
 clc
 clear
 
-all_freq = best_frequencies_from_noise();
+all_freq = noise_listener();
 freq = all_freq(1:4);
 sync_freq = all_freq(5);
 
@@ -10,7 +10,7 @@ sentence = 'Bonjour je teste le nombre de caracteres :D Jespere que tout va marc
 size_sentence_bin = dec2bin(size(sentence,2), 8);
 binary = dec2bin(double(sentence), 8);
 
-time_bit = 0.2;
+time_bit = 0.1;
 time_sync = 1;
 
 % Number of samples by unit of time

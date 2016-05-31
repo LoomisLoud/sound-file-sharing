@@ -5,11 +5,11 @@ clear
 fs = 44100;
 t=0:1/fs:1-1/fs;
 
-all_freq = best_frequencies_from_noise();
+all_freq = noise_listener()
 freq = all_freq(1:4);
 sync_freq = all_freq(5);
 range = 10;
-time_bit = 0.2;
+time_bit = 0.1;
 
 signalDep = sin(2*pi*sync_freq*t);
 size_result = zeros(1,4);
@@ -25,7 +25,7 @@ signal = getaudiodata(recObj);
 
 % Convolutions the 3 first seconds of the signal with the corresponding frequency to find the
 % start of the signal
-c = conv(signal(1:3*fs),signalDep);
+c = conv(signal(1:4*fs),signalDep);
 [maxConv, indexConv] = max(c);
 timeStart = indexConv+fs;
 
