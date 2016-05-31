@@ -22,7 +22,9 @@ f = fs/2*linspace(0,1,NFFT/2+1);
     
 % Pick the highest frequency for each interval and then choose one of
 % the four
+
 lowest_interesting_freq = round(2*listen_for*100*size(Z,1)/m);
+
 [maxfreqMax, first_indexfreqMax] = max(Z(lowest_interesting_freq:end));
 
 first_indexfreqMax = first_indexfreqMax + lowest_interesting_freq;
