@@ -10,7 +10,7 @@ sentence = 'Ultime test de la mort qui tue !!! :)';
 size_sentence_bin = dec2bin(size(sentence,2), 8);
 binary = dec2bin(double(sentence), 8);
 
-time_bit = 0.1;
+time_bit = 0.2;
 time_sync = 1;
 
 % Number of samples by unit of time
@@ -43,4 +43,4 @@ frequencies = reshape(frequencies,1,[]);
 
 % Sequence is: 1sec sync tuple, 1 sec silence, 4 sec size sentence, 1 sec
 % silence, full sentence transmission
-sound([zeros(size(t)) sin(2.*pi.*sync_freq.*t_sync) zeros(size(t_sync)) frequencies_sentence_size zeros(size(t_sync)) frequencies], fs, 16);
+sound([zeros(size(t_sync)) sin(2.*pi.*sync_freq.*t_sync) zeros(size(t_sync)) frequencies_sentence_size zeros(size(t_sync)) frequencies], fs, 16);
