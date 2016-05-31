@@ -21,7 +21,7 @@ f = fs/2*linspace(0,1,NFFT/2+1);
     
 % Pick the highest frequency for each interval and then choose one of
 % the four
-lowest_interesting_freq = round(2*5*2000*size(Z,1)/m);
+lowest_interesting_freq = round(2*5*100*size(Z,1)/m);
 [maxfreqMax, first_indexfreqMax] = max(Z(lowest_interesting_freq:end));
 
 first_indexfreqMax = first_indexfreqMax + lowest_interesting_freq;
@@ -47,5 +47,5 @@ end
 plot(f,Z)
 real_freq1 = round(first_indexfreqMax*m/(size(Z,1)*2*5));
 
-noise = [real_freq1 real_freq2];
-x = best_frequencies_from_noise(noise(1), noise(2))
+noise = [roundn(real_freq1,2) roundn(real_freq2,2)]
+x = best_frequencies_from_noise(noise(1), noise(2));

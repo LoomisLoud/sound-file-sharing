@@ -1,12 +1,12 @@
 clc
 clear
 
-all_freq = best_frequencies_from_noise();
+all_freq = noise_listener()
 freq = all_freq(1:4);
 sync_freq = all_freq(5);
 
 % Sentence to binary
-sentence = 'Bonjour je teste le nombre de caracteres :D Jespere que tout va marcher. Et suce quand meme mes boules !!! Il manque encore quelques carateres ! Bite, chatte !!';
+sentence = 'Ultime test de la mort qui tue !!! :)';
 size_sentence_bin = dec2bin(size(sentence,2), 8);
 binary = dec2bin(double(sentence), 8);
 
