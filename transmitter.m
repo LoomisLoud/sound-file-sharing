@@ -1,7 +1,8 @@
 clc
 clear
 
-all_freq = noise_listener()
+%all_freq = noise_listener()
+all_freq = [6000 6200 6400 6600 3000]
 freq = all_freq(1:4);
 sync_freq = all_freq(5);
 
