@@ -1,14 +1,14 @@
-
+function x = noise_listener()
 
 % Initializing frequencies, and timers
 fs = 44100;
 
 % Starting to listen and record the data
-% recObj = audiorecorder(fs,16,1);
-% disp('Start speaking.');
-% recordblocking(recObj, 5)
-% disp('End of Recording.');
-% signal = getaudiodata(recObj);
+recObj = audiorecorder(fs,16,1);
+disp('Start speaking.');
+recordblocking(recObj, 5)
+disp('End of Recording.');
+signal = getaudiodata(recObj);
 
 % Analyzes the size of the message
 m = length(signal);
@@ -21,16 +21,31 @@ f = fs/2*linspace(0,1,NFFT/2+1);
     
 % Pick the highest frequency for each interval and then choose one of
 % the four
-[maxfreqMax, first_indexfreqMax] = max(Z);
+lowest_interesting_freq = round(2*5*2000*size(Z,1)/m);
+[maxfreqMax, first_indexfreqMax] = max(Z(lowest_interesting_freq:end));
 
-Z_left = Z(1:first_indexfreqMax-50);
-[maxfreqMax_left, indexfreqMax_left] = max(Z_left);
+first_indexfreqMax = first_indexfreqMax + lowest_interesting_freq;
+
+maxfreqMax_left = 0;
+if first_indexfreqMax > lowest_interesting_freq + 100;
+   Z_left = Z(lowest_interesting_freq:first_indexfreqMax-50);
+   [maxfreqMax_left, indexfreqMax_left] = max(Z_left);
+   indexfreqMax_left = indexfreqMax_left + lowest_interesting_freq;
+end
 
 Z_right = Z(first_indexfreqMax+50:end);
 [maxfreqMax_right, indexfreqMax_right] = max(Z_right);
+indexfreqMax_right = indexfreqMax_right + first_indexfreqMax+50;
 
-second_indexfreqMax = max([indexfreqMax_left indexfreqMax_right]);
+switch max([maxfreqMax_left maxfreqMax_right])
+   case maxfreqMax_left
+      real_freq2 = round(indexfreqMax_left*m/(size(Z,1)*2*5));
+   case maxfreqMax_right
+      real_freq2 = round((indexfreqMax_right + 50 + first_indexfreqMax)*m/(size(Z,1)*2*5));
+   otherwise
+end
+plot(f,Z)
+real_freq1 = round(first_indexfreqMax*m/(size(Z,1)*2*5));
 
-real_freq1 = round(first_indexfreqMax*m/(size(Z,1)*2*5))
-real_freq2 = round(second_indexfreqMax*m/(size(Z,1)*2*5))
-
+noise = [real_freq1 real_freq2];
+x = best_frequencies_from_noise(noise(1), noise(2))

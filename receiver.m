@@ -5,10 +5,11 @@ clear
 fs = 44100;
 t=0:1/fs:1-1/fs;
 
-freq = [6000 6500 7000 7500];
-sync_freq = 3000;
+all_freq = best_frequencies_from_noise();
+freq = all_freq(1:4);
+sync_freq = all_freq(5);
 range = 10;
-time_bit = 0.05;
+time_bit = 0.2;
 
 signalDep = sin(2*pi*sync_freq*t);
 size_result = zeros(1,4);

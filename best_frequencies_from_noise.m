@@ -1,4 +1,4 @@
-function x = test(freq1,freq2)
+function x = best_frequencies_from_noise(freq1,freq2)
 
 distanceMinBetweenNoise = 2000;
 distanceMinBetweenFreq = 1000;
