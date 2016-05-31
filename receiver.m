@@ -6,11 +6,10 @@ fs = 44100;
 t=0:1/fs:1-1/fs;
 
 all_freq = noise_listener()
-% all_freq = [6000 6200 6400 6600 3000]
 freq = all_freq(1:4);
 sync_freq = all_freq(5);
 range = 10;
-time_bit = 0.1;
+time_bit = 0.15;
 
 signalDep = sin(2*pi*sync_freq*t);
 size_result = zeros(1,4);
