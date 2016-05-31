@@ -47,7 +47,7 @@ switch max([maxfreqMax_left maxfreqMax_right])
       real_freq2 = round((indexfreqMax_right + 50 + first_indexfreqMax)*m/(size(Z,1)*2*listen_for));
    otherwise
 end
-% plot(f,Z)
+plot(f,Z)
 real_freq1 = round(first_indexfreqMax*m/(size(Z,1)*2*listen_for));
 
 noise = [roundn(real_freq1,2) roundn(real_freq2,2)]
