@@ -1,15 +1,15 @@
 clc
 clear
 
-freq = [3000 6000 9000 12000];
+freq = [6000 6500 7000 7500];
 sync_freq = 3000;
 
 % Sentence to binary
-sentence = 'Bonjour je teste le nombre de caracteres :D Jespere que tout va marcher. Et suce quand meme mes boules !!! Il manque encore quelques caratere ! Bite, chatte !!!';
+sentence = 'Bonjour je teste le nombre de caracteres :D Jespere que tout va marcher. Et suce quand meme mes boules !!! Il manque encore quelques carateres ! Bite, chatte !!';
 size_sentence_bin = dec2bin(size(sentence,2), 8);
 binary = dec2bin(double(sentence), 8);
 
-time_bit = 0.1;
+time_bit = 0.05;
 time_sync = 1;
 
 % Number of samples by unit of time
@@ -42,4 +42,4 @@ frequencies = reshape(frequencies,1,[]);
 
 % Sequence is: 1sec sync tuple, 1 sec silence, 4 sec size sentence, 1 sec
 % silence, full sentence transmission
-sound([sin(2.*pi.*sync_freq.*t_sync) zeros(size(t_sync)) frequencies_sentence_size zeros(size(t_sync)) frequencies], fs, 16);
+sound([zeros(size(t)) sin(2.*pi.*sync_freq.*t_sync) zeros(size(t_sync)) frequencies_sentence_size zeros(size(t_sync)) frequencies], fs, 16);
