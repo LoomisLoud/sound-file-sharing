@@ -1,26 +1,26 @@
-% clc
-% clear
+clc
+clear
 
 % Initializing frequencies, and timers
 fs = 44100;
 t=0:1/fs:1-1/fs;
 
-freq = [5000 6000 7000 8000];
+freq = [6000 6500 7000 7500];
 sync_freq = 3000;
 range = 10;
-time_bit = 0.1;
+time_bit = 0.05;
 
 signalDep = sin(2*pi*sync_freq*t);
 size_result = zeros(1,4);
 
 % Starting to listen and record the data
-% recObj = audiorecorder(fs,16,1);
-% disp('Start speaking.')
-% record(recObj)
-% pause;
-% stop(recObj)
-% disp('End of Recording.');
-% signal = getaudiodata(recObj);
+recObj = audiorecorder(fs,16,1);
+disp('Start speaking.')
+record(recObj)
+pause;
+stop(recObj)
+disp('End of Recording.');
+signal = getaudiodata(recObj);
 
 % Convolutions the 3 first seconds of the signal with the corresponding frequency to find the
 % start of the signal

@@ -1,7 +1,7 @@
 clc
 clear
 
-freq = [5000 6000 7000 8000];
+freq = [3000 6000 9000 12000];
 sync_freq = 3000;
 
 % Sentence to binary
