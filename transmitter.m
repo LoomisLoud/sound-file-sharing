@@ -6,11 +6,11 @@ freq = all_freq(1:4);
 sync_freq = all_freq(5);
 
 % Sentence to binary
-sentence = 'Ultime test de la mort qui tue !!! :)';
+sentence = 'The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher gives reading assignments :-)';
 size_sentence_bin = dec2bin(size(sentence,2), 8);
 binary = dec2bin(double(sentence), 8);
 
-time_bit = 0.1;
+time_bit = 0.15;
 time_sync = 1;
 
 % Number of samples by unit of time
