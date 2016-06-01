@@ -1,4 +1,4 @@
-function x = noise_listener()
+% function x = noise_listener()
 
 % Initializing frequencies, and timers
 fs = 44100;
@@ -19,7 +19,7 @@ NFFT = 2^nextpow2(m);
 y = fft(signal,NFFT)/fs;
 Z = 2*abs(y(1:NFFT/2+1));
 f = fs/2*linspace(0,1,NFFT/2+1);
-    
+plot(f, Z)   
 % Pick the highest frequency for each interval and then choose one of
 % the four
 
@@ -44,11 +44,11 @@ switch max([maxfreqMax_left maxfreqMax_right])
    case maxfreqMax_left
       real_freq2 = round(indexfreqMax_left*m/(size(Z,1)*2*listen_for));
    case maxfreqMax_right
-      real_freq2 = round((indexfreqMax_right + 50 + first_indexfreqMax)*m/(size(Z,1)*2*listen_for));
+      real_freq2 = round((indexfreqMax_right + 50)*m/(size(Z,1)*2*listen_for));
    otherwise
 end
 
 real_freq1 = round(first_indexfreqMax*m/(size(Z,1)*2*listen_for));
 
 noise = [roundn(real_freq1,2) roundn(real_freq2,2)]
-x = best_frequencies_from_noise(noise(1), noise(2));
+x = best_frequencies_from_noise(noise(1), noise(2))
