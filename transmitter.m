@@ -10,7 +10,7 @@ sentence = 'The mediocre teacher tells. The good teacher explains. The superior 
 size_sentence_bin = dec2bin(size(sentence,2), 8);
 binary = dec2bin(double(sentence), 8);
 
-time_bit = 0.15;
+time_bit = 0.05;
 time_sync = 1;
 
 % Number of samples by unit of time
