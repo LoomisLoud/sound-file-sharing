@@ -1,7 +1,7 @@
 function x = best_frequencies_from_noise(freq1,freq2)
 
 if freq1 > 2500 & freq2 > 2500
-   distanceMinBetweenNoise = 4000;
+   distanceMinBetweenNoise = 1000;
    distanceMinBetweenFreq = 200;
    tab = [4000 4000 4000 4000];
    index = [2 3 4 ; 1 3 4 ; 1 2 4 ; 1 2 3 ];

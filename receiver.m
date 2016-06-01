@@ -9,7 +9,7 @@ all_freq = noise_listener()
 freq = all_freq(1:4);
 sync_freq = all_freq(5);
 range = 10;
-time_bit = 0.15;
+time_bit = 0.2;
 
 signalDep = sin(2*pi*sync_freq*t);
 size_result = zeros(1,4);
