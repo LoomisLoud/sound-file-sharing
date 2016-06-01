@@ -19,7 +19,8 @@ NFFT = 2^nextpow2(m);
 y = fft(signal,NFFT)/fs;
 Z = 2*abs(y(1:NFFT/2+1));
 f = fs/2*linspace(0,1,NFFT/2+1);
-    
+
+plot(f, Z);
 % Pick the highest frequency for each interval and then choose one of
 % the four
 
