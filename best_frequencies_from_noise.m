@@ -9,7 +9,7 @@ if freq1 > 2500 || freq2 > 2500
        index1 = index(i,1); 
        index2 = index(i,2); 
        index3 = index(i,3);
-        
+
        while (abs(tab(i)-freq1) < distanceMinBetweenNoise || abs(tab(i)-freq2) < distanceMinBetweenNoise || abs(tab(index1)-tab(i)) < distanceMinBetweenFreq || abs(tab(index2)-tab(i)) < distanceMinBetweenFreq || abs(tab(index3)-tab(i)) < distanceMinBetweenFreq)
         tab(i) = tab(i) + distanceMinBetweenFreq;
        end
