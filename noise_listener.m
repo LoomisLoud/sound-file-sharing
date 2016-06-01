@@ -1,4 +1,4 @@
-% function x = noise_listener()
+function x = noise_listener()
 
 % Initializing frequencies, and timers
 fs = 44100;
@@ -51,4 +51,4 @@ end
 real_freq1 = round(first_indexfreqMax*m/(size(Z,1)*2*listen_for));
 
 noise = [roundn(real_freq1,2) roundn(real_freq2,2)]
-x = best_frequencies_from_noise(noise(1), noise(2))
+x = best_frequencies_from_noise(noise(1), noise(2));
