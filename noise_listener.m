@@ -6,14 +6,14 @@ listen_for = 7;
 
 % Starting to listen and record the data
 recObj = audiorecorder(fs,16,1);
-disp('Start speaking.');
+disp('Listening for noise...');
 recordblocking(recObj, listen_for)
-disp('End of Recording.');
+disp('Noise recorded.');
 signal = getaudiodata(recObj);
 
 % Analyzes the size of the message
 m = length(signal);
-    
+
 % NFFT
 NFFT = 2^nextpow2(m);
 y = fft(signal,NFFT)/fs;
@@ -22,7 +22,6 @@ f = fs/2*linspace(0,1,NFFT/2+1);
 
 % Pick the highest frequency for each interval and then choose one of
 % the four
-
 lowest_interesting_freq = round(2*listen_for*100*size(Z,1)/m);
 
 [maxfreqMax, first_indexfreqMax] = max(Z(lowest_interesting_freq:end));
@@ -51,4 +50,4 @@ end
 real_freq1 = round(first_indexfreqMax*m/(size(Z,1)*2*listen_for));
 
 noise = [roundn(real_freq1,2) roundn(real_freq2,2)]
-x = best_frequencies_from_noise(noise(1), noise(2));
+x = best_frequencies_from_noise(noise(1), noise(2))

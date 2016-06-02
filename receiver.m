@@ -5,23 +5,24 @@ clear
 fs = 44100;
 t=0:1/fs:1-1/fs;
 
-all_freq = noise_listener()
+all_freq = noise_listener();
 freq = all_freq(1:4);
 sync_freq = all_freq(5);
 range = 10;
-time_bit = 0.2;
+time_bit = 0.15;
 
 signalDep = sin(2*pi*sync_freq*t);
 size_result = zeros(1,4);
 
 % Starting to listen and record the data
 recObj = audiorecorder(fs,16,1);
-disp('Start speaking.')
+disp('Listening for data...');
 record(recObj)
 pause;
 stop(recObj)
-disp('End of Recording.');
+disp('Data recorded.');
 signal = getaudiodata(recObj);
+disp('Processing...');
 
 % Convolutions the 3 first seconds of the signal with the corresponding frequency to find the
 % start of the signal
@@ -29,7 +30,7 @@ c = conv(signal(1:4*fs),signalDep);
 [maxConv, indexConv] = max(c);
 timeStart = indexConv+fs;
 
- count = 0;
+count = 0;
 countSize = 0;
 
 % Analyzes the size of the message
@@ -37,13 +38,13 @@ for n = timeStart:fs:timeStart + 3*fs
     countSize = countSize + 1;
     tuple = signal(n:n+fs-1);
     m = length(tuple);
-    
+
     % NFFT
     NFFT = 2^nextpow2(m);
     y = fft(tuple,NFFT)/fs;
     Z = 2*abs(y(1:NFFT/2+1));
     f = fs/2*linspace(0,1,NFFT/2+1);
-    
+
     % Taking a small range around the 4 chosen frequencies
     frequency_interval_1 = Z(round(2*freq(1)*size(Z)/m)-range:round(2*freq(1)*size(Z)/m)+range);
     frequency_interval_2 = Z(round(2*freq(2)*size(Z)/m)-range:round(2*freq(2)*size(Z)/m)+range);
@@ -69,7 +70,6 @@ for n = timeStart:fs:timeStart + 3*fs
         otherwise
             disp('Not found')
     end
-    
     size_result(countSize) = chosen_frequency;
 end
 
@@ -116,8 +116,7 @@ for n = timeStartMessage:timeSignal:timeStartMessage + (numberOfTuples - 1)*time
         otherwise
             disp('Not found')
     end
-    
     result(count) = chosen_frequency;
 end
- 
+
 celldisp(convert2Ascii(freq, result));

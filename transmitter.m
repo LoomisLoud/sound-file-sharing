@@ -7,7 +7,7 @@ sync_freq = all_freq(5);
 
 % Sentence to binary
 %sentence = 'The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher gives reading assignments :-)';
-sentence = 'Coucou';
+sentence = 'Hello, this is a sentence.';
 size_sentence_bin = dec2bin(size(sentence,2), 8);
 binary = dec2bin(double(sentence), 8);
 
